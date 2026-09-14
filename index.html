@@ -1,18 +1,219 @@
-<!doctype html>
-<html lang="en" class="bg-black text-white">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skilljava</title>
-    <meta name="description" content="Terminal Access Gateway" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-ti6Sakff.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CrLtgeLl.css">
-  </head>
-  <body class="bg-black text-white overflow-hidden select-none">
-    <div id="root"></div>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .box {
+            width: 100%;
+            max-width: 480px;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        p, .content-block {
+            font-size: 0.9rem;
+            color: #555555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .meta, .hint {
+            font-size: 0.8rem;
+            color: #888888;
+            margin-bottom: 12px;
+            font-family: monospace;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        input:focus {
+            border-color: #111111;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            background: #111111;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #333333;
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            min-height: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="main-box">
+        <h1 id="title">Executive Document Portal</h1>
+        <div id="content">
+            <p>Welcome to the Valiasr Corporation internal document management system. Authorized personnel must authenticate sequentially through tiered cryptographic checkpoints.</p>
+            <input type="password" id="passInput" placeholder="..." autocomplete="off" onkeydown="if(event.key === 'Enter') handleNext();">
+            <button onclick="handleNext()">enter</button>
+            <div class="error" id="errorMsg"></div>
+        </div>
+    </div>
+
+    <script>
+        const database = [
+            {
+                k: "849201",
+                t: "AUDIT_LOG_01",
+                c: "HIDDEN_ENCODING_01",
+                h: "Inspect external data sources for cipher pattern alpha.",
+                d: "Routine corporate diagnostic for Valiasr Corporation regional hub on Vali-Asr street. Facility climate control systems report minor condensation near basement archive conduits."
+            },
+            {
+                k: "valiasr",
+                t: "AUDIT_LOG_02",
+                c: "HIDDEN_ENCODING_02",
+                h: "Inspect external data sources for cipher pattern beta.",
+                d: "Security logs note a stationary white sedan parked near the corporate loading bay with no registered driver for over seventy hours."
+            },
+            {
+                k: "9148",
+                t: "AUDIT_LOG_03",
+                c: "HIDDEN_ENCODING_03",
+                h: "Inspect external data sources for cipher pattern gamma.",
+                d: "System administrators report that local server indices are failing to resolve proper corporate documents. Standard financial statements are being overwritten."
+            },
+            {
+                k: "monologue",
+                t: "AUDIT_LOG_04",
+                c: "HIDDEN_ENCODING_04",
+                h: "Inspect external data sources for cipher pattern delta.",
+                d: "An unattended intercom microphone in Sector 4 recorded seven consecutive hours of whispering into a dead channel."
+            },
+            {
+                k: "0xdead",
+                t: "AUDIT_LOG_05",
+                c: "HIDDEN_ENCODING_05",
+                h: "Inspect external data sources for cipher pattern epsilon.",
+                d: "Catastrophic memory exception on primary blade server. Copper circuit traces across the motherboard have dissolved completely, replaced by organic mycelial filaments."
+            },
+            {
+                k: "insomnia",
+                t: "AUDIT_LOG_06",
+                c: "HIDDEN_ENCODING_06",
+                h: "Inspect external data sources for cipher pattern zeta.",
+                d: "The regional facility director has remained awake at his terminal for over seventy-two hours, refusing shift relief."
+            },
+            {
+                k: "73251",
+                t: "AUDIT_LOG_07",
+                c: "HIDDEN_ENCODING_07",
+                h: "Inspect external data sources for cipher pattern eta.",
+                d: "Corporate network monitoring shows zero legitimate human traffic across regional gateways, yet inbound connection requests increment by exactly one unit every midnight."
+            },
+            {
+                k: "labyrinth",
+                t: "AUDIT_LOG_08",
+                c: "HIDDEN_ENCODING_08",
+                h: "Inspect external data sources for cipher pattern theta.",
+                d: "Floor plan schematics have mutated beyond algorithmic repair. Executive corridors loop infinitely into damp, pulsating vegetative tunnels."
+            },
+            {
+                k: "dissociation",
+                t: "AUDIT_LOG_09",
+                c: "HIDDEN_ENCODING_09",
+                h: "Inspect external data sources for cipher pattern iota.",
+                d: "Employee personnel records are dissolving into uniform grey ash. Staff viewing their reflections in executive washrooms report their facial features dissolving."
+            },
+            {
+                k: "548291",
+                t: "522 Connection Timed Out",
+                c: "HOST_PULSE_LOST // 0xDEADBEEF",
+                h: "There is nothing left to query.",
+                d: `
+                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #222; line-height: 1.5;">
+                        <h2 style="font-size: 1.1rem; font-weight: 500; color: #222; margin-bottom: 10px;">Connection timed out</h2>
+                        <hr style="border: none; border-top: 1px solid #d9d9d9; margin: 15px 0;">
+                        <table style="width: 100%; font-size: 0.8rem; color: #666; margin-bottom: 20px; border-collapse: collapse;">
+                            <tr><td style="padding: 6px 0; width: 120px;"><strong>Error reference number:</strong></td><td style="padding: 6px 0;">522</td></tr>
+                            <tr><td style="padding: 6px 0;"><strong>Ray ID:</strong></td><td style="padding: 6px 0; font-family: monospace;">8f9a2b4c1e00_DECAY</td></tr>
+                            <tr><td style="padding: 6px 0;"><strong>Client IP:</strong></td><td style="padding: 6px 0; font-family: monospace;">127.0.0.1</td></tr>
+                            <tr><td style="padding: 6px 0;"><strong>Server location:</strong></td><td style="padding: 6px 0;">Tehran, IR</td></tr>
+                        </table>
+                        <hr style="border: none; border-top: 1px solid #d9d9d9; margin: 15px 0;">
+                        <div style="font-size: 0.85rem; color: #444;">
+                            <p style="margin-bottom: 12px;"><strong>What happened?</strong><br>
+                            The initial connection between Cloudflare's network and the origin web server timed out. As a result, the web page can not be displayed because the origin server's lungs are full of damp gray moss and it has stopped responding.</p>
+                            <p style="margin-bottom: 0;"><strong>What can I do?</strong><br>
+                            You can try reloading the page in a few moments, but the drywall behind the terminal is shifting and there is no one left in the office to pick up the socket.</p>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        let index = 0;
+
+        function handleNext() {
+            const passInputElem = document.getElementById('passInput');
+            if (!passInputElem) return;
+            const inputVal = passInputElem.value.trim().toLowerCase();
+            const errorBox = document.getElementById('errorMsg');
+
+            if (index < database.length) {
+                if (inputVal === database[index].k.toLowerCase()) {
+                    index++;
+                    errorBox.innerText = "";
+
+                    if (index < database.length) {
+                        document.getElementById('title').innerText = database[index].t;
+                        document.getElementById('content').innerHTML = `
+                            <p>${database[index].d}</p>
+                            <div class="meta">KEY: ${database[index].c}</div>
+                            <div class="hint">HINT: ${database[index].h}</div>
+                            <input type="password" id="passInput" placeholder="..." autocomplete="off" onkeydown="if(event.key === 'Enter') handleNext();">
+                            <button onclick="handleNext()">enter</button>
+                            <div class="error" id="errorMsg"></div>
+                        `;
+                    } else {
+                        document.getElementById('title').innerText = database[database.length - 1].t;
+                        document.getElementById('content').innerHTML = database[database.length - 1].d;
+                    }
+                } else {
+                    errorBox.innerText = "Invalid key.";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
